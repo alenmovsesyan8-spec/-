@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Генератор оправданий для студентов | Нейросеть</title>
+    <title>Генератор оправданий для пропушеных пар </title>
     <style>
         * {
             margin: 0;
@@ -282,7 +282,7 @@
 
         <div class="history-section" id="historySection">
             <div id="historyList">
-                <!-- История будет здесь -->
+          
             </div>
             <button class="clear-history" id="clearHistoryBtn">🗑 Очистить историю</button>
         </div>
@@ -293,7 +293,7 @@
     </div>
 
 <script>
-    // ========== YANDEXGPT AI ==========
+
     const YANDEX_API_KEY = 'AQVNzFKmvqwobDFYXIJ0irkzr-a0V9Tb-YelXmvL';
     const FOLDER_ID = 'b1g11f5t6qk8rthn8c';
 
@@ -340,7 +340,6 @@
         return text.replace(/```/g, '').trim();
     }
 
-    // ========== ОСНОВНОЙ КОД ==========
     let currentCategory = 'random';
     let currentExcuse = '';
     let usageCount = 0;
@@ -348,7 +347,6 @@
     let historyVisible = false;
     let isLoading = false;
 
-    // ЭЛЕМЕНТЫ
     const excuseDisplay = document.getElementById('excuseDisplay');
     const generateBtn = document.getElementById('generateBtn');
     const copyBtn = document.getElementById('copyBtn');
@@ -359,14 +357,14 @@
     const counterElement = document.getElementById('counter');
     const catButtons = document.querySelectorAll('.cat-btn');
 
-    // СКЛОНЕНИЕ СЛОВ
+   
     function getWordForm(number) {
         if (number % 10 === 1 && number % 100 !== 11) return 'раз';
         if ([2,3,4].includes(number % 10) && ![12,13,14].includes(number % 100)) return 'раза';
         return 'раз';
     }
 
-    // СОХРАНЕНИЕ В LOCALSTORAGE
+    
     function saveToStorage() {
         localStorage.setItem('excuseHistory', JSON.stringify(history));
         localStorage.setItem('excuseCount', usageCount);
@@ -387,13 +385,13 @@
         }
     }
 
-    // ОБНОВЛЕНИЕ СЧЕТЧИКА
+
     function updateCounter() {
         const wordForm = getWordForm(usageCount);
         counterElement.textContent = `Использовано: ${usageCount} ${wordForm}`;
     }
 
-    // ДОБАВЛЕНИЕ В ИСТОРИЮ
+
     function addToHistory(excuse) {
         const now = new Date();
         const time = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
@@ -414,7 +412,7 @@
         updateHistoryDisplay();
     }
 
-    // ОБНОВЛЕНИЕ ИСТОРИИ
+
     function updateHistoryDisplay() {
         if (history.length === 0) {
             historyList.innerHTML = '<div class="history-item">История пуста</div>';
@@ -433,7 +431,7 @@
         });
     }
 
-    // ПОКАЗАТЬ/СКРЫТЬ ИСТОРИЮ
+
     function toggleHistory() {
         historyVisible = !historyVisible;
         if (historyVisible) {
@@ -445,7 +443,7 @@
         }
     }
 
-    // ОЧИСТКА ИСТОРИИ
+
     function clearHistory() {
         if (confirm('Очистить всю историю оправданий?')) {
             history = [];
@@ -456,7 +454,7 @@
         }
     }
 
-    // КОПИРОВАНИЕ
+
     function copyToClipboard() {
         if (!currentExcuse) return;
 
@@ -506,10 +504,9 @@
             currentExcuse = excuse;
             excuseDisplay.textContent = currentExcuse;
 
-            // Добавление в историю
+          
             addToHistory(currentExcuse);
 
-            // Обновление счетчика
             usageCount++;
             updateCounter();
             saveToStorage();
@@ -525,7 +522,7 @@
         }
     }
 
-    // КАТЕГОРИИ
+
     catButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             catButtons.forEach(b => b.classList.remove('active'));
@@ -535,13 +532,13 @@
         });
     });
 
-    // СОБЫТИЯ
+
     generateBtn.addEventListener('click', generateExcuse);
     copyBtn.addEventListener('click', copyToClipboard);
     historyBtn.addEventListener('click', toggleHistory);
     clearHistoryBtn.addEventListener('click', clearHistory);
 
-    // ГОРЯЧИЕ КЛАВИШИ
+
     document.addEventListener('keydown', (e) => {
         if (e.code === 'Space' && !e.target.matches('button, input, textarea')) {
             e.preventDefault();
@@ -553,7 +550,7 @@
         }
     });
 
-    // ЗАГРУЗКА
+
     document.addEventListener('DOMContentLoaded', () => {
         loadFromStorage();
         generateExcuse();
