@@ -259,8 +259,6 @@
     <div class="container">
         <header>
             <h1>🚀 Генератор Оправданий</h1>
-            <p class="subtitle">Нейросеть YandexGPT придумывает уникальные истории</p>
-            <div class="ai-badge">🤖 Работает на ИИ | Каждый раз уникально</div>
             <div class="counter" id="counter">Использовано: 0 раз</div>
         </header>
 
@@ -287,9 +285,7 @@
             <button class="clear-history" id="clearHistoryBtn">🗑 Очистить историю</button>
         </div>
 
-        <footer>
-            <p>🤖 Нейросеть YandexGPT | Обещаю, такого больше не повторится! 😉</p>
-        </footer>
+  
     </div>
 
 <script>
@@ -488,7 +484,6 @@
             });
     }
 
-    // ГЕНЕРАЦИЯ ЧЕРЕЗ ИИ
     async function generateExcuse() {
         if (isLoading) return;
 
@@ -513,7 +508,7 @@
 
         } catch (error) {
             console.error('Ошибка:', error);
-            excuseDisplay.innerHTML = `❌ Ошибка: ${error.message}<br><br>Попробуйте ещё раз. Если ошибка повторяется — загрузите сайт на GitHub Pages (локальный файл не поддерживает API).`;
+            excuseDisplay.innerHTML = `❌ Ошибка: ${error.message}<br><br>Попробуйте ещё раз).`;
             currentExcuse = '';
         } finally {
             isLoading = false;
